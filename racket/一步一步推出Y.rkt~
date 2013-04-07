@@ -1,0 +1,35 @@
+#lang racket
+
+(define (fac1 n)
+  (if (< n 2) 1
+      (* n (fac1 (- n 1)))))
+(fac1 5)
+
+
+(define (fac2 f n)
+  (if (< n 2) 1
+      (* n (f f (- n 1)))))
+(fac2 fac2 5)
+
+
+(define (fac3 f)
+  (lambda (n) 
+    (if (< n 2) 1
+        (* n ((f f) (- n 1))))))
+((fac3 fac3) 5)
+
+
+(define (fac4 f)
+  (define (g n) ((f f) n))
+  (lambda (n)
+    (if (< n 2) 1
+        (* n (g (- n 1))))))
+((fac4 fac4) 5)
+
+(define (recur f) (f f))
+(define fac5 (recur (lambda (f) 
+                      (define (g n) ((f f) n))
+                      (lambda (n)
+                        (if (< n 2) 1
+                            (* n (g (- n 1))))))))
+(fac5 5)
