@@ -70,5 +70,38 @@
              (lambda (f) 
                (fake_recur 
                 (lambda (n) ((f f) n)))))))
-(define fac9 (Y fake_fac))
-(fac9 5)
+((Y (lambda (self) 
+      (lambda (n) 
+        (if (< n 2) 1
+            (* n (self (- n 1))))))) 5)
+
+(lambda (self) 
+  (lambda (n) 
+    (if (< n 2) 1
+        (* n (self (- n 1))))))
+
+(((lambda (self) 
+    (lambda (n) 
+      (if (< n 2) 1
+          (* n (self (- n 1)))))) 
+  (lambda (self) 
+    (lambda (n) 
+      (if (< n 2) 1
+          (* n (self (- n 1))))))) 1)
+
+(((lambda (self) 
+    (lambda (n) 
+      (if (< n 2) 1
+          (* n (self (- n 1)))))) 
+  ((lambda (self) 
+     (lambda (n) 
+       (if (< n 2) 1
+           (* n (self (- n 1)))))) 
+   ((lambda (self) 
+      (lambda (n) 
+        (if (< n 2) 1
+            (* n (self (- n 1)))))) 
+    (lambda (self) 
+      (lambda (n) 
+        (if (< n 2) 1
+            (* n (self (- n 1))))))))) 3)
