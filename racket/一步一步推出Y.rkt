@@ -74,34 +74,3 @@
       (lambda (n) 
         (if (< n 2) 1
             (* n (self (- n 1))))))) 5)
-
-(lambda (self) 
-  (lambda (n) 
-    (if (< n 2) 1
-        (* n (self (- n 1))))))
-
-(((lambda (self) 
-    (lambda (n) 
-      (if (< n 2) 1
-          (* n (self (- n 1)))))) 
-  (lambda (self) 
-    (lambda (n) 
-      (if (< n 2) 1
-          (* n (self (- n 1))))))) 1)
-
-(((lambda (self) 
-    (lambda (n) 
-      (if (< n 2) 1
-          (* n (self (- n 1)))))) 
-  ((lambda (self) 
-     (lambda (n) 
-       (if (< n 2) 1
-           (* n (self (- n 1)))))) 
-   ((lambda (self) 
-      (lambda (n) 
-        (if (< n 2) 1
-            (* n (self (- n 1)))))) 
-    (lambda (self) 
-      (lambda (n) 
-        (if (< n 2) 1
-            (* n (self (- n 1))))))))) 3)
